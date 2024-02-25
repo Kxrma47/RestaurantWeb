@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+<body>
+<div>
+    <h2>Menu</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Название блюда</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Время приготовления</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dish : ${dishes}">
+            <td th:text="${dish.getDishName()}"></td>
+            <td th:text="${dish.getPrice()}"></td>
+            <td th:text="${dish.getQuantity()}"></td>
+            <td th:text="${dish.getDifficulty()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <a href="/user/userDashboard">Главное меню Пользователя</a>
+
+    <br>
+    <br>
+    <br>
+    <a href="/security/">Выход из аккаунта</a>
+</div>
+</body>
+</html>

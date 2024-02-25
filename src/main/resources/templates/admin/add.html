@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Dish</title>
+</head>
+<body>
+<div>
+  <h2>Создать блюдо</h2>
+  <form action="#" th:action="@{/admin/add}" th:object="${dishForm}" method="post">
+    <div>
+      <label for="dishName">Название блюда</label>
+      <input type="text" id="dishName" name="dishName" placeholder="Название блюда">
+    </div>
+    <div>
+      <label for="price">Цена</label>
+      <input type="text" id="price" name="price" placeholder="1-1000">
+    </div>
+    <div>
+      <label for="count">Количество</label>
+      <input type="text" id="count" name="quantity" placeholder="1-5">
+    </div>
+    <div>
+      <label for="difficulty">Время приготовления</label>
+      <input type="text" id="difficulty" name="difficulty" placeholder="2 - 15 сек">
+    </div>
+    <button type="submit">Создать</button>
+    <div th:if="${error}" style="color: red;" th:text="${error}"></div>
+  </form>
+  <a href="/admin/menuAdmin">Посмотерть меню блюд</a>
+  <br>
+  <br>
+  <br>
+  <a href="/admin/dashboard">Главное меню Админа</a>
+  <br>
+  <br>
+  <br>
+  <a href="/security/">Выход из аккаунта</a>
+</div>
+</body>
+</html>

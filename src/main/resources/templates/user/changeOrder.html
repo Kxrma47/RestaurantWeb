@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h2>Добавить блюдо в заказ</h2>
+    <form action="#" th:action="@{/user/changeOrder}" th:object="${dishForm}" method="post">
+        <div>
+            <label for="dishName">Название блюда</label>
+            <input type="text" id="dishName" name="dishName" placeholder="Введите название блюда">
+        </div>
+        <br>
+        <div>
+            <label for="count">Количество</label>
+            <input type="text" id="count" name="quantity" placeholder="Количество(1-5)">
+        </div>
+        <button type="submit">Изменить</button>
+        <div th:if="${error}" style="color: red;" th:text="${error}"></div>
+    </form>
+    <br>
+    <br>
+    <a>Эти блюда Вы можете добавить в этот заказ:</a>
+    <br>
+    <br>
+    <table>
+        <thead>
+        <tr>
+            <th>Название блюда</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Время приготовления</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dish : ${dishes}">
+            <td th:text="${dish.getDishName()}"></td>
+            <td th:text="${dish.getPrice()}"></td>
+            <td th:text="${dish.getQuantity()}"></td>
+            <td th:text="${dish.getDifficulty()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+</body>
+</html>
