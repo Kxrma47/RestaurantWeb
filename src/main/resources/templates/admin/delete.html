@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Dish</title>
+</head>
+<body>
+<div>
+    <h2>Удалить блюдо</h2>
+    <form action="#" th:action="@{/admin/delete}" th:object="${dishForm}" method="post">
+        <div>
+            <label for="dishName">Название блюда</label>
+            <input type="text" id="dishName" name="dishName" placeholder="Введите название блюда">
+        </div>
+        <button type="submit">Удалить</button>
+        <div th:if="${error}" style="color: red;" th:text="${error}"></div>
+    </form>
+    <a href="/admin/menuAdmin">Посмотреть меню</a>
+    <br>
+    <br>
+    <br>
+    <a href="/admin/dashboard">Главное меню Админа</a>
+    <br>
+    <br>
+    <br>
+    <a href="/security/">Выход из аккаунта</a>
+</div>
+</body>
+</html>

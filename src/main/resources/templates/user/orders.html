@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <script>
+        setInterval(function() {
+            var readyOrders = document.querySelectorAll("td[data-status='Готовится']");
+            if (readyOrders.length > 0) {
+                location.reload();
+            }
+        }, 900);
+    </script>
+</head>
+<body>
+<div>
+    <h2>Заказы</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Статус</th>
+            <th>Цена</th>
+            <th>Время</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order, orderIndex : ${orders}">
+            <td th:text="${order.status}" th:attr="data-status=${order.status}"></td>
+            <td>
+        <span th:each="dish : ${order.dishesToOrder}">
+            <span th:text="${dish.price}"></span><br>
+        </span>
+            </td>
+            <td>
+        <span th:each="dish : ${order.dishesToOrder}">
+            <span th:text="${dish.difficulty}"></span><br>
+        </span>
+            </td>
+            <td th:if="${order.status == 'Готовится'}">
+                <form th:action="@{/user/stopCook}" method="post">
+                    <input type="hidden" name="orderId" th:value="${orderIndex.index + 1}" />
+                    <input type="submit" value="Отменить" />
+                </form>
+                <form th:action="@{/user/pauseCook}" method="post" th:if="${anyDishes}">
+                    <input type="hidden" name="orderId" th:value="${orderIndex.index + 1}" />
+                    <input type="submit" value="Изменить" />
+                </form>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <form th:if="${not anyCookingOrders and anyReadyOrders}" th:action="@{/user/pay}" method="get">
+        <input type="submit" value="Оплатить" />
+    </form>
+    <br>
+    <br>
+    <br>
+    <a href="/user/createOrder">Сделать ещё заказ</a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="/user/userDashboard">Главное меню Пользователя</a>
+    <br>
+    <br>
+    <br>
+    <a href="/security/">Выход из аккаунта</a>
+</div>
+</body>
+</html>
